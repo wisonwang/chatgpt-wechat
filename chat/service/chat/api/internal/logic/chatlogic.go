@@ -590,7 +590,7 @@ func (p CommendImage) exec(l *ChatLogic, req *types.ChatReq) bool {
 	sendToUser(req.AgentID, req.UserID, "图片识别成功:\n\n"+txt, l.svcCtx.Config)
 
 	l.message = txt
-	return true
+	return false
 }
 
 type CommendPromptList struct{}
