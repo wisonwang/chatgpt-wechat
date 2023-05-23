@@ -25,3 +25,4 @@ go.work
 .DS_Store
 chat-api.yaml
 venv
+./chat/common/ali/ocr/*test.go
