@@ -26,3 +26,4 @@ go.work
 chat-api.yaml
 venv
 ./chat/common/ali/ocr/*test.go
+./chat/common/tests/*

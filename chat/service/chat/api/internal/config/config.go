@@ -120,7 +120,8 @@ type Config struct {
 			Auth struct {
 				Username string
 				Password string
-			}
+			} // 废弃
+			ApiKey string `json:",optional"`
 		}
 	} `json:",optional"`
 }
