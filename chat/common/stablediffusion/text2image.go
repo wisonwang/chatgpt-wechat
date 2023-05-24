@@ -57,7 +57,7 @@ func Text2Image(host, key, prompt string) (string, error) {
 		logx.Info("draw request fail", err)
 		return "", err
 	}
-	if resPayload["status"] != nil && resPayload["status"].(string) == "success" && resPayload["output"] != nil {
+	if resPayload["status"].(string) == "success" {
 		images := resPayload["output"].([]interface{})
 		for _, image := range images {
 			s := image.(string)
