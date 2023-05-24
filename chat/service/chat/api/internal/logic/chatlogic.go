@@ -798,6 +798,10 @@ func (p CommendDraw) exec(l *ChatLogic, req *types.ChatReq) bool {
 				// 再将 image 信息发送到用户
 				sendToUser(req.AgentID, req.UserID, "", l.svcCtx.Config, path)
 				return false
+			} else {
+				logx.Info("生成图片失败", err)
+				sendToUser(req.AgentID, req.UserID, "绘画生成图片失败，请重新尝试~", l.svcCtx.Config)
+				return false
 			}
 		} else {
 			// use open ai to draw
