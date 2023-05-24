@@ -766,6 +766,7 @@ func (p CommendDraw) exec(l *ChatLogic, req *types.ChatReq) bool {
 			host := l.svcCtx.Config.Draw.StableDiffusion.Host
 			key := l.svcCtx.Config.Draw.StableDiffusion.ApiKey
 			sendToUser(req.AgentID, req.UserID, "正在绘画中...", l.svcCtx.Config)
+			logx.Info("draw: ", host, key, prompt)
 			imageUrl, err := stablediffusion.Text2Image(host, key, prompt)
 
 			if err != nil {
