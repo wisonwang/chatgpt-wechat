@@ -592,7 +592,7 @@ func (p CommendImage) exec(l *ChatLogic, req *types.ChatReq) bool {
 	sendToUser(req.AgentID, req.UserID, "图片识别成功:\n\n"+txt, l.svcCtx.Config)
 	if l.svcCtx.Config.YouZan.ClientSecret != "" {
 		c := l.svcCtx.Config.YouZan
-		tokenRsp, err := youzan.RefreshAccxessKey(c.ClientID, c.ClientSecret, c.GrantID)
+		tokenRsp, err := youzan.RefreshAccessKey(c.ClientID, c.ClientSecret, c.GrantID)
 		if err != nil {
 			sendToUser(req.AgentID, req.UserID, "获取有赞token失败:"+err.Error(), l.svcCtx.Config)
 			return false
