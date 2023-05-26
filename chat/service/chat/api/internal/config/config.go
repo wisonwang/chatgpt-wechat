@@ -124,4 +124,11 @@ type Config struct {
 			ApiKey string `json:",optional"`
 		}
 	} `json:",optional"`
+	// 有赞券key
+	YouZan struct {
+		AppID        string `json:",optional"`
+		ClientID     string `json:",optional"`
+		ClientSecret string `json:",optional"`
+		GrantID      string `json:",optional"`
+	}
 }

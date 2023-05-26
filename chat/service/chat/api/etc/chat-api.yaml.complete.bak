@@ -90,3 +90,9 @@ Draw:                                               # 绘画配置
   StableDiffusion:                                  # 绘画配置
     Host: "http://xx.xxx.xxx.xxx:7860"              # 绘画服务地址
     ApiKey: "xxxx"
+
+YouZan:
+  AppID: ""
+  ClientID: ""
+	ClientSecret: ""
+	GrantID: ""

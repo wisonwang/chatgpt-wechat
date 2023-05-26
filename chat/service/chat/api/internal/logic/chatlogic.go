@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"chat/common/ali/ocr"
+	"chat/common/ali/youzan"
 	"chat/common/milvus"
 	"chat/common/openai"
 	"chat/common/plugin"
@@ -589,6 +590,24 @@ func (p CommendImage) exec(l *ChatLogic, req *types.ChatReq) bool {
 	}
 	// 图片识别成功
 	sendToUser(req.AgentID, req.UserID, "图片识别成功:\n\n"+txt, l.svcCtx.Config)
+	if l.svcCtx.Config.YouZan.ClientSecret != "" {
+		c := l.svcCtx.Config.YouZan
+		tokenRsp, err := youzan.RefreshAccxessKey(c.ClientID, c.ClientSecret, c.GrantID)
+		if err != nil {
+			sendToUser(req.AgentID, req.UserID, "获取有赞token失败:"+err.Error(), l.svcCtx.Config)
+			return false
+		}
+		youzanCouponNo, _ := youzan.ParseCouponNo(txt)
+		if youzanCouponNo != "" {
+			sendToUser(req.AgentID, req.UserID, "解析券码失败:"+txt, l.svcCtx.Config)
+			return false
+		}
+		errMsg, err := youzan.ComponCancelAfterWrite(youzanCouponNo, tokenRsp.Data.AccessToken, tokenRsp.MToken)
+		if err != nil {
+			sendToUser(req.AgentID, req.UserID, "核销失败:"+errMsg, l.svcCtx.Config)
+			return false
+		}
+	}
 
 	l.message = txt
 	return false
