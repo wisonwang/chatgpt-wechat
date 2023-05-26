@@ -598,7 +598,7 @@ func (p CommendImage) exec(l *ChatLogic, req *types.ChatReq) bool {
 			return false
 		}
 		youzanCouponNo, _ := youzan.ParseCouponNo(txt)
-		if youzanCouponNo != "" {
+		if youzanCouponNo == "" {
 			sendToUser(req.AgentID, req.UserID, "解析券码失败:"+txt, l.svcCtx.Config)
 			return false
 		}
