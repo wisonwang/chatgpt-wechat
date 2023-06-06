@@ -31,7 +31,7 @@ type TokenResponse struct {
 
 func RefreshAccessKey(clientID, clientSecret, grantID string) (*TokenResponse, error) {
 
-	if CacheToken != nil && CacheToken.Data.Expires > (time.Now().UnixMilli()+60000) {
+	if CacheToken != nil && CacheToken.Data.Expires > (time.Now().UnixMilli()+1000*60*60*24) {
 		return CacheToken, nil
 	}
 	url := "https://open.youzanyun.com/auth/token"
